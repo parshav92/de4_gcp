@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs-extra');
 const axios = require('axios');
 const app = express();
-const port = process.env.PORT || 3000;  // Use PORT from environment or default to 3000
+const port = process.env.PORT || 8080;  // Use PORT from environment or default to 8080
 
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 const FILE_PATH = './data.json';

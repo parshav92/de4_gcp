@@ -22,11 +22,10 @@ WORKDIR /app
 # Copy only the necessary files from the build stage
 COPY --from=build /app /app
 
-# Expose the necessary port (if your app runs on 8080 or 3000, update accordingly)
-EXPOSE 3000
+EXPOSE 8080
 
 # Set environment variable for the API port (for example, Cloud Run expects to listen on PORT)
-ENV PORT=3000
+ENV PORT=8080
 
 # Command to run your application (assuming your main file is index.js)
 CMD ["node", "index.js"]

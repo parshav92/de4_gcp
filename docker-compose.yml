@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "3000:3000"  # Map port 3000 of the container to port 3000 on the host
+      - "8080:8080"  # Map port 8080 of the container to port 8080 on the host
     environment:
       - NODE_ENV=production
     restart: always
