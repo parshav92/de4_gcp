@@ -36,4 +36,3 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY  # Sends logs to Cloud Logging only
-  logs_bucket: 'gs://de4'  # Your Cloud Storage bucket for build logs
