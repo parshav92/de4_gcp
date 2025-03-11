@@ -24,8 +24,6 @@ COPY --from=build /app /app
 
 EXPOSE 8080
 
-# Set environment variable for the API port (for example, Cloud Run expects to listen on PORT)
 ENV PORT=8080
 
-# Command to run your application (assuming your main file is index.js)
 CMD ["node", "index.js"]
