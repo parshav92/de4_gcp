@@ -1,5 +1,8 @@
-const axios = require('axios');
+const express = require('express');
 const fs = require('fs-extra');
+const axios = require('axios');
+const app = express();
+const port = process.env.PORT || 3000;  // Use PORT from environment or default to 3000
 
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 const FILE_PATH = './data.json';
@@ -19,3 +22,11 @@ async function fetchData() {
 }
 
 fetchData();
+
+app.get('/', (req, res) => {
+  res.send('Node.js app running on Cloud Run!');
+});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});

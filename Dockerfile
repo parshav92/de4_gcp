@@ -19,11 +19,14 @@ FROM node:18-alpine
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy the dependencies from the build stage
+# Copy only the necessary files from the build stage
 COPY --from=build /app /app
 
-# Expose the necessary port (if applicable)
+# Expose the necessary port (if your app runs on 8080 or 3000, update accordingly)
 EXPOSE 3000
 
-# Command to run your application
+# Set environment variable for the API port (for example, Cloud Run expects to listen on PORT)
+ENV PORT=3000
+
+# Command to run your application (assuming your main file is index.js)
 CMD ["node", "index.js"]
