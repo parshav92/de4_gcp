@@ -1,0 +1,35 @@
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/node-app', '.']
+
+  # Step 2: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/node-app']
+
+  # Step 3: Deploy the Docker image to Google Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'node-app'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/node-app'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'us-central1'
+      - '--allow-unauthenticated'
+
+  # Step 4 (optional): Fetch data from the API (if needed within the pipeline)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        curl https://jsonplaceholder.typicode.com/posts -o data.json
+        echo "API data fetched successfully"
+
+images:
+  - 'gcr.io/$PROJECT_ID/node-app'
